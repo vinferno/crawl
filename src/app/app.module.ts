@@ -4,11 +4,13 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { StageComponent } from './stage/stage.component';
+import { BeingComponent } from './being/being.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    StageComponent
+    StageComponent,
+    BeingComponent
   ],
   imports: [
     BrowserModule,
