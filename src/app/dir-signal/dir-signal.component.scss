@@ -1,0 +1,35 @@
+$width: 20px;
+$half: $width/2;
+
+.look {
+  width: $width;
+  height: $width;
+  background-color: red;
+}
+.t {
+  position: absolute;
+  top: 0;
+  left: calc(50% - 10px);
+  @extend .look;
+}
+
+.d {
+  position: absolute;
+  bottom: 0;
+  left: calc(50% - 10px);
+  @extend .look;
+}
+
+.l{
+  position: absolute;
+  top: calc(50% - 10px);
+  left: 0;
+  @extend .look;
+}
+
+.r {
+  position: absolute;
+  top: calc(50% - 10px);
+  right: 0;
+  @extend .look;
+}

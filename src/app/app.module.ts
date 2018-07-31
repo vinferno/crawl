@@ -5,12 +5,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { StageComponent } from './stage/stage.component';
 import { BeingComponent } from './being/being.component';
+import { DirSignalComponent } from './dir-signal/dir-signal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     StageComponent,
-    BeingComponent
+    BeingComponent,
+    DirSignalComponent
   ],
   imports: [
     BrowserModule,

@@ -1,1 +1,3 @@
-<vf-being *ngFor="let being of beings" [being]="being"></vf-being>
+{{phase}}
+
+<vf-being *ngFor="let being of beings; let i = index" [id]="i" [being]="being" [phase]="phase"></vf-being>
