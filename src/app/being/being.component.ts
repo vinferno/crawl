@@ -2,6 +2,8 @@ import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
 import {InputsService} from '../inputs.service';
 import {ClockService} from '../clock.service';
 import {CollisionService} from '../collision.service';
+import {Store} from '@ngrx/store';
+import {stateActions} from '../state/reducers-index';
 
 @Component({
   selector: 'vf-being',
@@ -40,43 +42,50 @@ export class BeingComponent implements OnInit {
   public width = '0px';
   public height = '0px';
 
-  constructor(public inputs: InputsService, public clock: ClockService, public collision: CollisionService) {
+  constructor(
+    public inputs: InputsService,
+    public clock: ClockService,
+    public collision: CollisionService,
+    public store: Store<any>,
+  ) {
   }
 
   ngOnInit() {
     this.collision.add(this);
     this.inputs.pressed.subscribe(key => {
-      if (!key) {
+      if (!key && this.phase !== 'testMoves') {
         return;
       }
-      if (key.key === this.being.up) {
-        this.tu = true;
+      if (key.type === 'keydown') {
+        console.log('key down', key)
+        if (key.key === this.being.up) {
+          this.tu = true;
+        }
+        if (key.key === this.being.down) {
+          this.td = true;
+        }
+        if (key.key === this.being.left) {
+          this.tl = true;
+        }
+        if (key.key === this.being.right) {
+          this.tr = true;
+        }
       }
-      if (key.key === this.being.down) {
-        this.td = true;
-      }
-      if (key.key === this.being.left) {
-        this.tl = true;
-      }
-      if (key.key === this.being.right) {
-        this.tr = true;
-      }
-    });
-    this.inputs.up.subscribe(key => {
-      if (!key) {
-        return;
-      }
-      if (key.key === this.being.up) {
-        this.tu = false;
-      }
-      if (key.key === this.being.down) {
-        this.td = false;
-      }
-      if (key.key === this.being.left) {
-        this.tl = false;
-      }
-      if (key.key === this.being.right) {
-        this.tr = false;
+
+      if (key.type === 'keyup') {
+        console.log('key up', key)
+        if (key.key === this.being.up) {
+          this.tu = false;
+        }
+        if (key.key === this.being.down) {
+          this.td = false;
+        }
+        if (key.key === this.being.left) {
+          this.tl = false;
+        }
+        if (key.key === this.being.right) {
+          this.tr = false;
+        }
       }
     });
     this.x = this.being.x;
@@ -87,7 +96,10 @@ export class BeingComponent implements OnInit {
     this.height = this.being.height;
     this.width = this.being.width;
 
+    this.store.dispatch(stateActions.beingsActions.add({x: this.x, y: this.y, tx: this.tx, ty: this.ty}));
+
     this.clock.tick.subscribe(phase => {
+      this.phase = phase;
       if (phase === 'testMoves') {
         // first get direction change and store it in t and l;
         // no movement

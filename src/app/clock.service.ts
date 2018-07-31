@@ -11,7 +11,7 @@ export class ClockService {
   public phase = 0;
 
   constructor() {
-    this.tick = interval(20).pipe(
+    this.tick = interval(40).pipe(
       map(res => this.phases[res % this.phases.length])
     );
   }

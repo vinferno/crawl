@@ -15,7 +15,7 @@ export class AppComponent {
 
   @HostListener('document:keyup', ['$event'])
   handleKeyboardUp(event: KeyboardEvent) {
-    this.addKeyUp(event);
+    this.addKeyPress(event);
   }
 
 
@@ -24,9 +24,5 @@ export class AppComponent {
 
   public addKeyPress(key) {
     this.input.addKeyPress(key);
-  }
-
-  public addKeyUp(key) {
-    this.input.addKeyUp(key);
   }
 }

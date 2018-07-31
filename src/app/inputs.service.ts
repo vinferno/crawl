@@ -6,16 +6,11 @@ import {BehaviorSubject} from 'rxjs';
 })
 export class InputsService {
   public pressed = new BehaviorSubject(null);
-  public up = new BehaviorSubject(null);
 
   constructor() {
   }
 
   public addKeyPress(key) {
     this.pressed.next(key);
-  }
-
-  public addKeyUp(key) {
-    this.up.next(key);
   }
 }
