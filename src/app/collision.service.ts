@@ -123,7 +123,7 @@ export class CollisionService {
           console.log('preventTop', being1.preventTop);
           console.log('preventTopOld', being1.preventTopOld);
         }
-        being1.l = Math.abs(smallMove) <= being1.l ? smallMove : 0;
+        being1.l = Math.abs(smallMove) <= Math.abs(being1.l) ? smallMove : 0;
       }
       if (being1.preventTop.length && being1.preventTopOld.length) {
         let smallMove = being1.t;
@@ -148,7 +148,7 @@ export class CollisionService {
           console.log('preventTop', being1.preventTop);
           console.log('preventTopOld', being1.preventTopOld);
         }
-        being1.t = Math.abs(smallMove) <= being1.t ? smallMove : 0;
+        being1.t = Math.abs(smallMove) <= Math.abs(being1.t) ? smallMove : 0;
       }
     });
   }
