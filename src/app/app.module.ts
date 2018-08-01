@@ -3,8 +3,8 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { StageComponent } from './stage/stage.component';
-import { BeingComponent } from './being/being.component';
+import { StageComponent } from 'src/app/stage/stage.component';
+import { BeingComponent } from 'src/app/being/being.component';
 import { DirSignalComponent } from './dir-signal/dir-signal.component';
 
 import { StoreModule } from '@ngrx/store';

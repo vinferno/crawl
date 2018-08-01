@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {ClockService} from './clock.service';
+import {Store} from '@ngrx/store';
 
 @Injectable({
   providedIn: 'root'
@@ -8,8 +8,8 @@ export class CollisionService {
 
   public beings = [];
 
-  constructor(public clock: ClockService) {
-    this.clock.tick.subscribe(phase => {
+  constructor(public store: Store<any>) {
+    this.store.select('clockState').subscribe(phase => {
       if (phase === 'detectCollision') {
         this.test();
       }

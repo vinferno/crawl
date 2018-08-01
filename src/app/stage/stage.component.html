@@ -1,3 +1,8 @@
-{{phase}}
+<div class="phase-container">
+  <div [ngClass]="getPhaseClass('collectInputs')">collectInputs</div>
+  <div [ngClass]="getPhaseClass('testMoves')">testMoves</div>
+  <div [ngClass]="getPhaseClass('detectCollision')">detectCollision</div>
+  <div [ngClass]="getPhaseClass('move')">move</div>
+</div>
 
 <vf-being *ngFor="let being of beings; let i = index" [id]="i" [being]="being" [phase]="phase"></vf-being>

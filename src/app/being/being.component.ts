@@ -42,6 +42,8 @@ export class BeingComponent implements OnInit {
   public width = '0px';
   public height = '0px';
 
+  public beings;
+
   constructor(
     public inputs: InputsService,
     public clock: ClockService,
@@ -53,11 +55,11 @@ export class BeingComponent implements OnInit {
   ngOnInit() {
     this.collision.add(this);
     this.inputs.pressed.subscribe(key => {
-      if (!key && this.phase !== 'testMoves') {
+      if (!key || this.phase !== 'testMoves') {
         return;
       }
       if (key.type === 'keydown') {
-        console.log('key down', key)
+        console.log('key down', key);
         if (key.key === this.being.up) {
           this.tu = true;
         }
@@ -73,7 +75,7 @@ export class BeingComponent implements OnInit {
       }
 
       if (key.type === 'keyup') {
-        console.log('key up', key)
+        console.log('key up', key);
         if (key.key === this.being.up) {
           this.tu = false;
         }
@@ -88,6 +90,8 @@ export class BeingComponent implements OnInit {
         }
       }
     });
+
+
     this.x = this.being.x;
     this.y = this.being.y;
     this.z = this.being.z;
@@ -96,52 +100,35 @@ export class BeingComponent implements OnInit {
     this.height = this.being.height;
     this.width = this.being.width;
 
-    this.store.dispatch(stateActions.beingsActions.add({x: this.x, y: this.y, tx: this.tx, ty: this.ty}));
-
-    this.clock.tick.subscribe(phase => {
-      this.phase = phase;
-      if (phase === 'testMoves') {
-        // first get direction change and store it in t and l;
-        // no movement
-        if (!this.tu && !this.td) {
-          this.t = 0;
+    this.store.dispatch(stateActions.beingsActions.add(
+      {
+        ...this.being,
+        ...{
+          tx: this.being.x,
+          ty: this.being.y,
+          l: 0,
+          t: 0,
+          id: this.id
         }
-        if (!this.tl && !this.tr) {
-          this.l = 0;
-        }
-        // end no movement
-        if (this.tu) {
-          this.t = -this.speed;
-        }
-        if (this.td) {
-          this.t = this.speed;
-        }
-        if (this.tl) {
-          this.l = -this.speed;
-        }
-        if (this.tr) {
-          this.l = this.speed;
-        }
-
-        this.tx = this.x + this.l;
-        this.ty = this.y + this.t;
       }
-
-      if (phase === 'move') {
-        this.move();
-      }
+    ));
+    this.store.select('beingsState').subscribe(state => {
+      this.beings = state.beings;
     });
   }
 
-  public getStyle() {
+  public getStyle(id) {
     const px = 'px';
     return {
-      position: 'absolute',
-      top: this.y + px,
-      left: this.x + px,
-      width: this.width + px,
-      height: this.height + px,
-      backgroundColor: this.being.backgroundColor,
+      ...this.beings[id],
+      ...{
+        position: 'absolute',
+        top: this.y + px,
+        left: this.x + px,
+        width: this.width + px,
+        height: this.height + px,
+        backgroundColor: this.being.backgroundColor,
+      },
     };
   }
 
