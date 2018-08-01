@@ -61,12 +61,16 @@ export class AppComponent implements OnInit {
       if (clock.phase === 'detectCollision') {
         this.detectCollision();
       }
+
+      if (clock.phase === 'recheckCollisions') {
+        this.detectCollision();
+      }
       if (clock.phase === 'move') {
         this.moveNow();
       }
     });
 
-    this.clock.startClock(100).subscribe();
+    this.clock.startClock(20).subscribe();
   }
 
   public addKeyPress(key) {

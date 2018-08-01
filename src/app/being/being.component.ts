@@ -1,7 +1,4 @@
 import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
-import {InputsService} from '../inputs.service';
-import {ClockService} from '../clock.service';
-import {CollisionService} from '../collision.service';
 import {Store} from '@ngrx/store';
 import {stateActions} from '../state/reducers-index';
 
@@ -45,6 +42,7 @@ export class BeingComponent implements OnInit {
     ));
     this.store.select('beingsState').subscribe(state => {
       this.beings = state.beings;
+      this.self = state.beings[this.id];
     });
   }
 
@@ -54,7 +52,7 @@ export class BeingComponent implements OnInit {
       return {};
     }
     const px = 'px';
-    return this.self = {
+    return {
       width: being.width + px,
       height: being.height + px,
       backgroundColor: being.backgroundColor,
