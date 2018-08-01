@@ -27,37 +27,45 @@ export class StageComponent implements OnInit {
       if (clock.phase === 'collectInputs') {
         this.bgc = '#B0E2FF';
       }
-      // if (phase.phase === 'detectCollision') {
-      //   this.bgc = 'pink';
-      // }
-      // if (phase.phase === 'move') {
-      //   this.bgc = '#B0E2FF';
-      // }
       this.phase = clock.phase;
       this.cd.detectChanges();
     });
 
     this.beings = [
       {
-        x: 400, y: 100, width: 99, height: 99, backgroundColor: 'teal',
+        x: 400, y: 400, width: 99, height: 99, backgroundColor: 'teal',
         up: 'e', down: 'd', right: 'f', left: 's',
         speed: 10,
       },
       {
-        x: 500, y: 200, width: 99, height: 99, backgroundColor: 'teal',
+        x: 500, y: 400, width: 99, height: 99, backgroundColor: 'teal',
         up: 'e', down: 'd', right: 'f', left: 's',
         speed: 10,
       },
       {
-        x: 600, y: 300, width: 99, height: 99, backgroundColor: 'teal',
+        x: 600, y: 400, width: 99, height: 99, backgroundColor: 'teal',
         up: 'e', down: 'd', right: 'f', left: 's',
         speed: 10,
       },
       {
-        x: 700, y: 400, width: 99, height: 99, backgroundColor: 'teal',
+        x: 700, y: 400, width: 99, height: 99, backgroundColor: 'red',
+        speed: 10,
+      },
+      {
+        x: 700, y: 300, width: 99, height: 99, backgroundColor: 'teal',
         up: 'e', down: 'd', right: 'f', left: 's',
         speed: 10,
-      }
+      },
+      {
+        x: 700, y: 200, width: 99, height: 99, backgroundColor: 'teal',
+        up: 'e', down: 'd', right: 'f', left: 's',
+        speed: 10,
+      },
+      {
+        x: 700, y: 100, width: 99, height: 99, backgroundColor: 'teal',
+        up: 'e', down: 'd', right: 'f', left: 's',
+        speed: 10,
+      },
     ];
   }
 

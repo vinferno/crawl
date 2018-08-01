@@ -5,6 +5,7 @@ import {stateActions} from './state/reducers-index';
 import {ClockService} from './clock.service';
 import {DirectionService} from './direction.service';
 import {MoveService} from './move.service';
+import {CollisionService} from './collision.service';
 
 @Component({
   selector: 'vf-root',
@@ -24,6 +25,7 @@ export class AppComponent implements OnInit {
     public store: Store<any>,
     public clock: ClockService,
     public direction: DirectionService,
+    public collision: CollisionService,
     public move: MoveService,
   ) {
     this.store.subscribe(state => this.state = state);
@@ -56,12 +58,15 @@ export class AppComponent implements OnInit {
         this.testDirections();
       }
 
+      if (clock.phase === 'detectCollision') {
+        this.detectCollision();
+      }
       if (clock.phase === 'move') {
         this.moveNow();
       }
     });
 
-    this.clock.startClock(200).subscribe();
+    this.clock.startClock(100).subscribe();
   }
 
   public addKeyPress(key) {
@@ -74,6 +79,10 @@ export class AppComponent implements OnInit {
 
   public testDirections() {
     this.direction.testDirs();
+  }
+
+  public detectCollision() {
+    this.collision.test();
   }
 
   public moveNow() {
