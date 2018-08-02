@@ -68,6 +68,16 @@ export class StageComponent implements OnInit {
         up: 'e', down: 'd', right: 'f', left: 's',
         speed: 10,
       },
+      {
+        x: 400, y: 300, width: 99, height: 99, backgroundColor: 'indigo',
+        up: 'e', down: 'd', right: 'f', left: 's',
+        speed: 10,
+      },
+      {
+        x: 500, y: 300, width: 99, height: 99, backgroundColor: 'red',
+        up: 'e', down: 'd', right: 'f', left: 's',
+        speed: 10,
+      },
     ];
   }
 

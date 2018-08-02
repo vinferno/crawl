@@ -51,18 +51,27 @@ export class CollisionService {
         const myBottom = being1.y + being1.t + being1.height;
         const myOldBottom = being1.y + being1.height;
         const theirRight = being2.x + being2.l + being2.width;
-        const theirLeft = being2.x + being2.l;
-        const theirBottom = being2.y + being2.t + being2.width;
-        const theirTop = being2.y + being2.t;
+        const theirOldRight = being2.x + being2.width;
+        const theirLeft = being2.x;
+        const theirOldLeft = being2.x;
+        const theirBottom = being2.y + being2.width;
+        const theirOldBottom = being2.y + being2.width;
+        const theirTop = being2.y;
+        const theirOldTop = being2.y;
 
-        const xOverlap = (myLeft >= theirLeft && myLeft <= theirRight || myRight <= theirRight && myRight >= theirLeft);
-        const yOverlap = (myTop >= theirTop && myTop <= theirBottom || myBottom <= theirBottom && myBottom >= theirTop);
-        const xOverlapOld = (myOldLeft >= theirLeft && myOldLeft <= theirRight || myOldRight <= theirRight && myOldRight >= theirLeft);
-        const yOverlapOld = (myOldTop >= theirTop && myOldTop <= theirBottom || myOldBottom <= theirBottom && myOldBottom >= theirTop);
+        const xOverlap = ((myLeft >= theirLeft && myLeft <= theirRight) || (myRight <= theirRight && myRight >= theirLeft));
+        const yOverlap = ((myTop >= theirTop && myTop <= theirBottom) || (myBottom <= theirBottom && myBottom >= theirTop));
+        const xOverlapOld = ((myOldLeft >= theirLeft && myOldLeft <= theirRight) || (myOldRight <= theirRight && myOldRight >= theirLeft));
+        const yOverlapOld = ((myOldTop >= theirTop && myOldTop <= theirBottom) || (myOldBottom <= theirBottom && myOldBottom >= theirTop));
+
+        const xOverlapTheirs = ((myLeft >= theirOldLeft && myLeft <= theirOldRight) || (myRight <= theirOldRight && myRight >= theirOldLeft));
+        const yOverlapTheirs = ((myTop >= theirOldTop && myTop <= theirOldBottom) || (myBottom <= theirOldBottom && myBottom >= theirOldTop));
+        const xOverlapOldTheirs = ((myOldLeft >= theirOldLeft && myOldLeft <= theirOldRight) || (myOldRight <= theirOldRight && myOldRight >= theirOldLeft));
+        const yOverlapOldTheirs = ((myOldTop >= theirOldTop && myOldTop <= theirOldBottom) || (myOldBottom <= theirOldBottom && myOldBottom >= theirOldTop));
 
         if (being1Right || being1Left) {
           if (yOverlap && xOverlap) {
-            if (being1Right && theirRight > myRight || being1Left && theirLeft < myLeft) {
+            if ((being1Right && theirRight > myRight) || (being1Left && theirLeft < myLeft)) {
               being1.preventLeft.push(being2);
             }
           }
@@ -70,7 +79,7 @@ export class CollisionService {
 
         if (being1Up || being1Down) {
           if (yOverlap && xOverlap) {
-            if (being1Down && theirBottom > myBottom || being1Up && theirTop < myTop) {
+            if ((being1Down && theirBottom > myBottom) || (being1Up && theirTop < myTop)) {
               being1.preventTop.push(being2);
             }
           }
@@ -78,7 +87,7 @@ export class CollisionService {
 
         if (being1Up || being1Down) {
           if (yOverlap && xOverlapOld) {
-            if (being1Down && theirBottom > myBottom || being1Up && theirTop < myTop) {
+            if ((being1Down && theirBottom > myBottom) || (being1Up && theirTop < myTop)) {
               being1.preventTopOld.push(being2);
             }
           }
@@ -86,7 +95,7 @@ export class CollisionService {
 
         if (being1Right || being1Left) {
           if (yOverlapOld && xOverlap) {
-            if (being1Right && theirRight > myRight || being1Left && theirLeft < myLeft) {
+            if ((being1Right && theirRight > myRight) || (being1Left && theirLeft < myLeft)) {
               being1.preventLeftOld.push(being2);
             }
           }
@@ -99,18 +108,18 @@ export class CollisionService {
         let smallMove = being1.l;
         being1.preventLeft.forEach(being2 => {
           if (being1Right) {
-            smallMove = being2.x - (being1.x + being1.width) - 1;
+            smallMove = (being2.x + being2.l) - (being1.x + being1.width) - 1;
           }
           if (being1Left) {
-            smallMove = (being2.x + being2.width) - (being1.x) + 1;
+            smallMove = (being2.x + being2.width + being2.l) - (being1.x) + 1;
           }
         });
         being1.preventLeftOld.forEach(being2 => {
           if (being1Right) {
-            smallMove = being2.x - (being1.x + being1.width) - 1;
+            smallMove = (being2.x + being2.l) - (being1.x + being1.width) - 1;
           }
           if (being1Left) {
-            smallMove = (being2.x + being2.width) - (being1.x) + 1;
+            smallMove = (being2.x + being2.width + being2.l) - (being1.x) + 1;
           }
         });
         being1.l = Math.abs(smallMove) <= Math.abs(being1.l) ? smallMove : 0;
@@ -119,18 +128,18 @@ export class CollisionService {
         let smallMove = being1.t;
         being1.preventTop.forEach(being2 => {
           if (being1Down) {
-            smallMove = being2.y - (being1.y + being1.height) - 1;
+            smallMove = (being2.y + being2.t) - (being1.y + being1.height) - 1;
           }
           if (being1Up) {
-            smallMove = (being2.y + being2.height) - (being1.y) + 1;
+            smallMove = (being2.y + being2.height + being2.t) - (being1.y) + 1;
           }
         });
         being1.preventTopOld.forEach(being2 => {
           if (being1Down) {
-            smallMove = being2.y - (being1.y + being1.height) - 1;
+            smallMove = (being2.y + being2.t) - (being1.y + being1.height) - 1;
           }
           if (being1Up) {
-            smallMove = (being2.y + being2.height) - (being1.y) + 1;
+            smallMove = (being2.y + being2.height + being2.t) - (being1.y) + 1;
           }
         });
         being1.t = Math.abs(smallMove) <= Math.abs(being1.t) ? smallMove : 0;
