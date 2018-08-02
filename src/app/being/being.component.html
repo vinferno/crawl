@@ -1,11 +1,11 @@
-<img [ngStyle]="getStyle()" >
+<img [ngStyle]="getStyle()" [src]="self?.src" >
 
   <!--<pre>{{self | json}}</pre>-->
   <!--<div class="flex">-->
     <!--<div>-->
       <div>id: {{self?.id}}</div>
       <div>y: {{self?.y}}</div>
-      <div>x: {{self?.x}}</div>
+      <div>x: {{self?.src}}</div>
       <!--<div>l: {{self?.l}}</div>-->
       <!--<div>t: {{self?.t}}</div>-->
     <!--</div>-->

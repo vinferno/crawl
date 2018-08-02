@@ -13,7 +13,7 @@ export class StageComponent implements OnInit {
   @HostBinding('style.background-color') public bgc = 'lime';
   public beings;
   public phase;
-  public clockState
+  public clockState;
 
   constructor(public clock: ClockService, public cd: ChangeDetectorRef, public store: Store<any>) {
 
@@ -50,37 +50,37 @@ export class StageComponent implements OnInit {
         speed: 10,
       },
       {
-        x: 705, y: 402, width: 99, height: 99, backgroundColor: 'green',
-        speed: 10,
+        x: 700, y: 400, width: 99, height: 99, backgroundColor: 'green',
+        speed: 10, src: 'assets/grass.png'
       },
       {
-        x: 1000, y: 402, width: 99, height: 99, backgroundColor: 'green',
-        speed: 10,
+        x: 1000, y: 400, width: 99, height: 99, backgroundColor: 'green',
+        speed: 10, src: 'assets/grass.png'
       },
       {
-        x: 705, y: 702, width: 99, height: 99, backgroundColor: 'green',
-        speed: 10,
+        x: 700, y: 700, width: 99, height: 99, backgroundColor: 'green',
+        speed: 10, src: 'assets/grass.png'
       },
       {
-        x: 905, y: 202, width: 99, height: 99, backgroundColor: 'green',
-        speed: 10,
+        x: 900, y: 200, width: 99, height: 99, backgroundColor: 'green',
+        speed: 10, src: 'assets/grass.png'
       },
       {
-        x: 305, y: 802, width: 99, height: 99, backgroundColor: 'green',
-        speed: 10,
+        x: 300, y: 800, width: 99, height: 99, backgroundColor: 'green',
+        speed: 10, src: 'assets/grass.png'
       },
       {
-        x: 100, y: 202, width: 99, height: 99, backgroundColor: 'green',
-        speed: 10,
+        x: 100, y: 200, width: 99, height: 99, backgroundColor: 'green',
+        speed: 10, src: 'assets/grass.png'
       },
       {
-        x: 300, y: 202, width: 99, height: 99, backgroundColor: 'green',
-        speed: 10,
+        x: 300, y: 200, width: 99, height: 99, backgroundColor: 'green',
+        speed: 10, src: 'assets/grass.png'
       },
       {
         x: 700, y: 510, width: 99, height: 99, backgroundColor: 'blue',
         up: 'e', down: 'd', right: 'f', left: 's',
-        speed: 10,
+        speed: 10, borderRadius: '100%'
       },
       {
         x: 700, y: 200, width: 99, height: 99, backgroundColor: 'indigo',
@@ -103,10 +103,29 @@ export class StageComponent implements OnInit {
         speed: 10,
       },
     ];
+    for (let i = 1; i < 11; i++) {
+      this.beings.push(this.createGrass(i * 100, 0));
+    }
+    for (let i = 1; i < 11; i++) {
+      this.beings.push(this.createGrass(i * 100, 900));
+    }
+    for (let i = 0; i < 10; i++) {
+      this.beings.push(this.createGrass(1100, i * 100));
+    }
+    for (let i = 0; i < 10; i++) {
+      this.beings.push(this.createGrass(0, i * 100));
+    }
   }
 
   public getPhaseClass(phase) {
     return {active: phase === this.phase, inactive: phase !== this.phase};
+  }
+
+  public createGrass(x, y) {
+    return {
+      x, y, width: 99, height: 99, backgroundColor: 'green',
+      speed: 10, src: 'assets/grass.png'
+    };
   }
 
 }

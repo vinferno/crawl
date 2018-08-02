@@ -17,6 +17,7 @@ export class CollisionService {
   public test() {
     this.testAgain();
     this.testAgain();
+    this.testAgain();
   }
 
   public testAgain() {

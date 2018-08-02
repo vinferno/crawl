@@ -58,7 +58,8 @@ export class BeingComponent implements OnInit {
       backgroundColor: being.backgroundColor,
       top: being.y + px,
       left: being.x + px,
-      position: 'absolute'
+      position: 'absolute',
+      'border-radius': being.borderRadius,
     };
   }
 }
