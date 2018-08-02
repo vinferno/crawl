@@ -107,43 +107,53 @@ export class CollisionService {
       if (being1.preventLeft.length && being1.preventLeftOld.length) {
         let smallMove = being1.l;
         being1.preventLeft.forEach(being2 => {
-          if (being1Right) {
-            smallMove = (being2.x + being2.l) - (being1.x + being1.width) - 1;
+          const testRight = (being2.x + being2.l) - (being1.x + being1.width) - 1;
+          const testLeft = (being2.x + being2.width + being2.l) - (being1.x) + 1;
+          if (being1Right && Math.abs(testRight) < Math.abs(smallMove)) {
+            smallMove = testRight;
           }
-          if (being1Left) {
-            smallMove = (being2.x + being2.width + being2.l) - (being1.x) + 1;
+          if (being1Left && Math.abs(testLeft) < Math.abs(smallMove)) {
+            smallMove = testLeft;
           }
         });
         being1.preventLeftOld.forEach(being2 => {
-          if (being1Right) {
-            smallMove = (being2.x + being2.l) - (being1.x + being1.width) - 1;
+          const testRight = (being2.x + being2.l) - (being1.x + being1.width) - 1;
+          const testLeft = (being2.x + being2.width + being2.l) - (being1.x) + 1;
+          if (being1Right && Math.abs(testRight) < Math.abs(smallMove)) {
+            smallMove = testRight;
           }
-          if (being1Left) {
-            smallMove = (being2.x + being2.width + being2.l) - (being1.x) + 1;
+          if (being1Left && Math.abs(testLeft) < Math.abs(smallMove)) {
+            smallMove = testLeft;
           }
         });
+
         being1.l = Math.abs(smallMove) <= Math.abs(being1.l) ? smallMove : 0;
       }
       if (being1.preventTop.length && being1.preventTopOld.length) {
         let smallMove = being1.t;
         being1.preventTop.forEach(being2 => {
-          if (being1Down) {
-            smallMove = (being2.y + being2.t) - (being1.y + being1.height) - 1;
+          const testDown = (being2.y + being2.t) - (being1.y + being1.height) - 1;
+          const testUp = (being2.y + being2.height + being2.t) - (being1.y) + 1;
+          if (being1Down && Math.abs(testDown) < Math.abs(smallMove)) {
+            smallMove = testDown;
           }
-          if (being1Up) {
-            smallMove = (being2.y + being2.height + being2.t) - (being1.y) + 1;
+          if (being1Up && Math.abs(testUp) < Math.abs(smallMove)) {
+            smallMove = testUp;
           }
         });
         being1.preventTopOld.forEach(being2 => {
-          if (being1Down) {
-            smallMove = (being2.y + being2.t) - (being1.y + being1.height) - 1;
+          const testDown = (being2.y + being2.t) - (being1.y + being1.height) - 1;
+          const testUp = (being2.y + being2.height + being2.t) - (being1.y) + 1;
+          if (being1Down && Math.abs(testDown) < Math.abs(smallMove)) {
+            smallMove = testDown;
           }
-          if (being1Up) {
-            smallMove = (being2.y + being2.height + being2.t) - (being1.y) + 1;
+          if (being1Up && Math.abs(testUp) < Math.abs(smallMove)) {
+            smallMove = testUp;
           }
         });
         being1.t = Math.abs(smallMove) <= Math.abs(being1.t) ? smallMove : 0;
       }
+
     });
   }
 }

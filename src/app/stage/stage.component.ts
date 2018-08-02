@@ -54,6 +54,30 @@ export class StageComponent implements OnInit {
         speed: 10,
       },
       {
+        x: 1000, y: 402, width: 99, height: 99, backgroundColor: 'green',
+        speed: 10,
+      },
+      {
+        x: 705, y: 702, width: 99, height: 99, backgroundColor: 'green',
+        speed: 10,
+      },
+      {
+        x: 905, y: 202, width: 99, height: 99, backgroundColor: 'green',
+        speed: 10,
+      },
+      {
+        x: 305, y: 802, width: 99, height: 99, backgroundColor: 'green',
+        speed: 10,
+      },
+      {
+        x: 100, y: 202, width: 99, height: 99, backgroundColor: 'green',
+        speed: 10,
+      },
+      {
+        x: 300, y: 202, width: 99, height: 99, backgroundColor: 'green',
+        speed: 10,
+      },
+      {
         x: 700, y: 510, width: 99, height: 99, backgroundColor: 'blue',
         up: 'e', down: 'd', right: 'f', left: 's',
         speed: 10,
@@ -69,12 +93,12 @@ export class StageComponent implements OnInit {
         speed: 10,
       },
       {
-        x: 400, y: 300, width: 99, height: 99, backgroundColor: 'indigo',
+        x: 590, y: 300, width: 99, height: 99, backgroundColor: 'indigo',
         up: 'e', down: 'd', right: 'f', left: 's',
         speed: 10,
       },
       {
-        x: 500, y: 300, width: 99, height: 99, backgroundColor: 'red',
+        x: 690, y: 300, width: 99, height: 99, backgroundColor: 'red',
         up: 'e', down: 'd', right: 'f', left: 's',
         speed: 10,
       },
