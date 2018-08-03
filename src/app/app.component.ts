@@ -70,7 +70,7 @@ export class AppComponent implements OnInit {
       }
     });
 
-    this.clock.startClock(20).subscribe();
+    this.clock.startClock(80).subscribe();
   }
 
   public addKeyPress(key) {

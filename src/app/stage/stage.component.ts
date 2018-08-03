@@ -35,17 +35,42 @@ export class StageComponent implements OnInit {
 
     this.beings = [
       {
-        x: 400, y: 400, width: 99, height: 99, backgroundColor: 'red',
+        x: 300, y: 300, width: 99, height: 99, backgroundColor: 'red',
         up: 'e', down: 'd', right: 'f', left: 's',
         speed: 10,
       },
       {
-        x: 500, y: 400, width: 99, height: 99, backgroundColor: 'orange',
+        x: 400, y: 200, width: 99, height: 99, backgroundColor: 'orange',
         up: 'e', down: 'd', right: 'f', left: 's',
         speed: 10,
       },
       {
         x: 1000, y: 300, width: 99, height: 99, backgroundColor: 'yellow',
+        up: 'e', down: 'd', right: 'f', left: 's',
+        speed: 10,
+      },
+      {
+        x: 700, y: 510, width: 99, height: 99, backgroundColor: 'blue',
+        up: 'e', down: 'd', right: 'f', left: 's',
+        speed: 10, borderRadius: '100%'
+      },
+      {
+        x: 700, y: 200, width: 99, height: 99, backgroundColor: 'indigo',
+        up: 'e', down: 'd', right: 'f', left: 's',
+        speed: 10,
+      },
+      {
+        x: 700, y: 100, width: 99, height: 99, backgroundColor: 'red',
+        up: 'e', down: 'd', right: 'f', left: 's',
+        speed: 10,
+      },
+      {
+        x: 590, y: 300, width: 99, height: 99, backgroundColor: 'indigo',
+        up: 'e', down: 'd', right: 'f', left: 's',
+        speed: 10,
+      },
+      {
+        x: 690, y: 300, width: 99, height: 99, backgroundColor: 'red',
         up: 'e', down: 'd', right: 'f', left: 's',
         speed: 10,
       },
@@ -76,31 +101,6 @@ export class StageComponent implements OnInit {
       {
         x: 300, y: 200, width: 99, height: 99, backgroundColor: 'green',
         speed: 10, src: 'assets/grass.png'
-      },
-      {
-        x: 700, y: 510, width: 99, height: 99, backgroundColor: 'blue',
-        up: 'e', down: 'd', right: 'f', left: 's',
-        speed: 10, borderRadius: '100%'
-      },
-      {
-        x: 700, y: 200, width: 99, height: 99, backgroundColor: 'indigo',
-        up: 'e', down: 'd', right: 'f', left: 's',
-        speed: 10,
-      },
-      {
-        x: 700, y: 100, width: 99, height: 99, backgroundColor: 'red',
-        up: 'e', down: 'd', right: 'f', left: 's',
-        speed: 10,
-      },
-      {
-        x: 590, y: 300, width: 99, height: 99, backgroundColor: 'indigo',
-        up: 'e', down: 'd', right: 'f', left: 's',
-        speed: 10,
-      },
-      {
-        x: 690, y: 300, width: 99, height: 99, backgroundColor: 'red',
-        up: 'e', down: 'd', right: 'f', left: 's',
-        speed: 10,
       },
     ];
     for (let i = 1; i < 11; i++) {
