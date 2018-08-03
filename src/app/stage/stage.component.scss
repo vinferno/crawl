@@ -1,13 +1,4 @@
-::ng-deep vf-stage {
-  width: 100%;
-  display: block;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: -1;
-}
+
 
 .phase-container {
   display: flex;
@@ -16,9 +7,12 @@
     border: 1px solid black;
     text-align: center;
   }
+  z-index: 400;
+  background-color: gray;
 }
 
 
 .active {
   background-color: lime;
+  z-index: 40;
 }

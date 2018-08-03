@@ -42,6 +42,7 @@ export class CollisionService {
           // return;
         }
 
+
         // determine position of the beings;
         const myLeft = being1.x + being1.l;
         const myOldLeft = being1.x;
@@ -105,7 +106,7 @@ export class CollisionService {
 
 
       // assign
-      if (being1.preventLeft.length && being1.preventLeftOld.length) {
+      if (being1.preventLeft.length || being1.preventLeftOld.length) {
         let smallMove = being1.l;
         being1.preventLeft.forEach(being2 => {
           const testRight = (being2.x + being2.l) - (being1.x + being1.width) - 1;
@@ -115,6 +116,9 @@ export class CollisionService {
           }
           if (being1Left && Math.abs(testLeft) < Math.abs(smallMove)) {
             smallMove = testLeft;
+          }
+          if (being1.id === 2 && (being1.t || being1.l) ) {
+            console.log('l', {...being1}, smallMove);
           }
         });
         being1.preventLeftOld.forEach(being2 => {
@@ -126,11 +130,17 @@ export class CollisionService {
           if (being1Left && Math.abs(testLeft) < Math.abs(smallMove)) {
             smallMove = testLeft;
           }
+          if (being1.id === 2 && (being1.t || being1.l) ) {
+            console.log('l', {...being1}, smallMove);
+          }
         });
 
         being1.l = Math.abs(smallMove) <= Math.abs(being1.l) ? smallMove : 0;
+        if (being1.id === 2 && (being1.t || being1.l) ) {
+          console.log('l2', {...being1});
+        }
       }
-      if (being1.preventTop.length && being1.preventTopOld.length) {
+      if (being1.preventTop.length || being1.preventTopOld.length) {
         let smallMove = being1.t;
         being1.preventTop.forEach(being2 => {
           const testDown = (being2.y + being2.t) - (being1.y + being1.height) - 1;
@@ -140,6 +150,9 @@ export class CollisionService {
           }
           if (being1Up && Math.abs(testUp) < Math.abs(smallMove)) {
             smallMove = testUp;
+          }
+          if (being1.id === 2 && (being1.t || being1.l) ) {
+            console.log('t', {...being1}, smallMove);
           }
         });
         being1.preventTopOld.forEach(being2 => {
@@ -151,8 +164,18 @@ export class CollisionService {
           if (being1Up && Math.abs(testUp) < Math.abs(smallMove)) {
             smallMove = testUp;
           }
+          if (being1.id === 2 && (being1.t || being1.l) ) {
+            console.log('t', {...being1}, smallMove);
+          }
         });
         being1.t = Math.abs(smallMove) <= Math.abs(being1.t) ? smallMove : 0;
+        if (being1.id === 2 && (being1.t || being1.l) ) {
+          console.log('t2', {...being1}, smallMove);
+        }
+      }
+
+      if (being1.id === 2 && (being1.t || being1.l) ) {
+        console.log('test', {...being1});
       }
 
     });

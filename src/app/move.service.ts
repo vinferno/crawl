@@ -22,6 +22,9 @@ export class MoveService {
     this.beings.forEach(being => {
       being.x += being.l;
       being.y += being.t;
+      if (being.id === 2 && (being.l || being.t)) {
+        console.log('move', {...being});
+      }
     });
   }
 }
