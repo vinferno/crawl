@@ -10,17 +10,21 @@ import { DirSignalComponent } from './dir-signal/dir-signal.component';
 import { StoreModule } from '@ngrx/store';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {reducers} from './state/reducers-index';
+import {HttpClientModule} from '@angular/common/http';
+import { StageSelectComponent } from './stage-select/stage-select.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     StageComponent,
     BeingComponent,
-    DirSignalComponent
+    DirSignalComponent,
+    StageSelectComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     StoreModule.forRoot(reducers),
     StoreDevtoolsModule.instrument({
       maxAge : 25, // Retains last 25 states

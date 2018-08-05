@@ -20,10 +20,14 @@ export class MoveService {
 
   public move() {
     this.beings.forEach(being => {
+      if (being.id === 0 && (being.l || being.t)) {
+        console.log('before', being.x, being.y);
+      }
       being.x += being.l;
       being.y += being.t;
-      if (being.id === 2 && (being.l || being.t)) {
-        console.log('move', {...being});
+      if (being.id === 0 && (being.l || being.t)) {
+        console.log('moved', being.x, being.y);
+        console.log('being', {...being});
       }
     });
   }

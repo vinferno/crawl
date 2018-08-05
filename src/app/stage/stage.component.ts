@@ -1,6 +1,11 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, HostBinding, OnInit} from '@angular/core';
-import {ClockService} from '../clock.service';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, HostBinding, OnDestroy, OnInit} from '@angular/core';
+import {ClockService} from '../services/clock.service';
 import {Store} from '@ngrx/store';
+import {HttpClient} from '@angular/common/http';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/do';
+import {ActivatedRoute, Router} from '@angular/router';
+import {stateActions} from '../state/reducers-index';
 
 @Component({
   selector: 'vf-stage',
@@ -8,19 +13,36 @@ import {Store} from '@ngrx/store';
   styleUrls: ['./stage.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class StageComponent implements OnInit {
+export class StageComponent implements OnInit, OnDestroy {
 
   @HostBinding('style.background-color') public bgc = 'lime';
   public beings;
   public phase;
   public clockState;
+  public subscriptions = [];
 
-  constructor(public clock: ClockService, public cd: ChangeDetectorRef, public store: Store<any>) {
+  constructor(
+    public clock: ClockService,
+    public cd: ChangeDetectorRef,
+    public store: Store<any>,
+    public http: HttpClient,
+    public route: ActivatedRoute,
+    public router: Router,
+  ) {
 
   }
 
   ngOnInit() {
-    this.store.select('clockState').subscribe(clock => {
+    console.log('stage');
+    const paramSub = this.route.params.subscribe(params => {
+      console.log(params['config']); // (+) converts string 'id' to a number
+      this.getStage(params['config']);
+    });
+
+    this.subscriptions.push(paramSub);
+
+
+    const clockSub = this.store.select('clockState').subscribe(clock => {
       if (!clock) {
         return;
       }
@@ -32,100 +54,24 @@ export class StageComponent implements OnInit {
       this.phase = clock.phase;
       this.cd.detectChanges();
     });
+    this.subscriptions.push(clockSub);
+  }
 
-    this.beings = [
-      {
-        x: 300, y: 300, width: 99, height: 99, backgroundColor: 'red',
-        up: 'e', down: 'd', right: 'f', left: 's',
-        speed: 10,
-      },
-      {
-        x: 400, y: 200, width: 99, height: 99, backgroundColor: 'orange',
-        up: 'e', down: 'd', right: 'f', left: 's',
-        speed: 10,
-      },
-      {
-        x: 1000, y: 300, width: 99, height: 99, backgroundColor: 'yellow',
-        up: 'e', down: 'd', right: 'f', left: 's',
-        speed: 10,
-      },
-      {
-        x: 700, y: 510, width: 99, height: 99, backgroundColor: 'blue',
-        up: 'e', down: 'd', right: 'f', left: 's',
-        speed: 10, borderRadius: '100%'
-      },
-      {
-        x: 700, y: 200, width: 99, height: 99, backgroundColor: 'indigo',
-        up: 'e', down: 'd', right: 'f', left: 's',
-        speed: 10,
-      },
-      {
-        x: 700, y: 100, width: 99, height: 99, backgroundColor: 'red',
-        up: 'e', down: 'd', right: 'f', left: 's',
-        speed: 10,
-      },
-      {
-        x: 590, y: 300, width: 99, height: 99, backgroundColor: 'indigo',
-        up: 'e', down: 'd', right: 'f', left: 's',
-        speed: 10,
-      },
-      {
-        x: 690, y: 300, width: 99, height: 99, backgroundColor: 'red',
-        up: 'e', down: 'd', right: 'f', left: 's',
-        speed: 10,
-      },
-      {
-        x: 700, y: 400, width: 99, height: 99, backgroundColor: 'green',
-        speed: 10, src: 'assets/grass.png'
-      },
-      {
-        x: 1000, y: 400, width: 99, height: 99, backgroundColor: 'green',
-        speed: 10, src: 'assets/grass.png'
-      },
-      {
-        x: 700, y: 700, width: 99, height: 99, backgroundColor: 'green',
-        speed: 10, src: 'assets/grass.png'
-      },
-      {
-        x: 900, y: 200, width: 99, height: 99, backgroundColor: 'green',
-        speed: 10, src: 'assets/grass.png'
-      },
-      {
-        x: 300, y: 800, width: 99, height: 99, backgroundColor: 'green',
-        speed: 10, src: 'assets/grass.png'
-      },
-      {
-        x: 100, y: 200, width: 99, height: 99, backgroundColor: 'green',
-        speed: 10, src: 'assets/grass.png'
-      },
-      {
-        x: 300, y: 200, width: 99, height: 99, backgroundColor: 'green',
-        speed: 10, src: 'assets/grass.png'
-      },
-    ];
-    for (let i = 1; i < 11; i++) {
-      this.beings.push(this.createGrass(i * 100, 0));
-    }
-    for (let i = 1; i < 11; i++) {
-      this.beings.push(this.createGrass(i * 100, 900));
-    }
-    for (let i = 0; i < 10; i++) {
-      this.beings.push(this.createGrass(1100, i * 100));
-    }
-    for (let i = 0; i < 10; i++) {
-      this.beings.push(this.createGrass(0, i * 100));
-    }
+  ngOnDestroy() {
+    this.store.dispatch(stateActions.beingsActions.reset(null));
+    this.subscriptions.forEach( sub => sub.unsubscribe());
   }
 
   public getPhaseClass(phase) {
     return {active: phase === this.phase, inactive: phase !== this.phase};
   }
 
-  public createGrass(x, y) {
-    return {
-      x, y, width: 99, height: 99, backgroundColor: 'green',
-      speed: 10, src: 'assets/grass.png'
-    };
+
+  public getStage(url) {
+    this.http.get('assets/' + url + '.json').subscribe( res => {
+      console.log('res', res);
+      this.beings = res;
+    }, error1 =>  { this.router.navigateByUrl('stage/stage-test-slide-x'); console.log('error routing', error1);});
   }
 
 }

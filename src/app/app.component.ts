@@ -1,12 +1,14 @@
 import {Component, HostListener, OnInit} from '@angular/core';
-import {InputsService} from './inputs.service';
+import {InputsService} from './services/inputs.service';
 import {Store} from '@ngrx/store';
 import {stateActions} from './state/reducers-index';
-import {ClockService} from './clock.service';
-import {DirectionService} from './direction.service';
-import {MoveService} from './move.service';
-import {CollisionService} from './collision.service';
+import {ClockService} from './services/clock.service';
+import {DirectionService} from './services/direction.service';
+import {MoveService} from './services/move.service';
+import {CollisionService} from './services/collision.service';
+import {AdjustService} from './services/adjust.service';
 
+const clockspeed = 100;
 @Component({
   selector: 'vf-root',
   templateUrl: './app.component.html',
@@ -15,8 +17,6 @@ import {CollisionService} from './collision.service';
 export class AppComponent implements OnInit {
 
   public buttons = {};
-  public phases = ['testMoves', 'detectCollision', 'move'];
-  public phase = 0;
 
   public state;
 
@@ -26,6 +26,7 @@ export class AppComponent implements OnInit {
     public clock: ClockService,
     public direction: DirectionService,
     public collision: CollisionService,
+    public adjust: AdjustService,
     public move: MoveService,
   ) {
     this.store.subscribe(state => this.state = state);
@@ -51,26 +52,33 @@ export class AppComponent implements OnInit {
         return;
       }
       if (clock.phase === 'collectInputs') {
+        console.log('collectInputs');
         this.collectInputs();
       }
 
-      if (clock.phase === 'testMoves') {
+      if (clock.phase === 'testDirections') {
+        console.log('testDirections');
         this.testDirections();
       }
 
       if (clock.phase === 'detectCollision') {
+        console.log('dectectCollision');
         this.detectCollision();
+        this.testAdjust();
       }
 
-      if (clock.phase === 'recheckCollisions') {
+      if (clock.phase === 'adjust') {
+        console.log('adjust');
         this.detectCollision();
+        this.testAdjust();
       }
       if (clock.phase === 'move') {
+        console.log('move');
         this.moveNow();
       }
     });
 
-    this.clock.startClock(80).subscribe();
+    this.clock.startClock(clockspeed).subscribe();
   }
 
   public addKeyPress(key) {
@@ -79,6 +87,11 @@ export class AppComponent implements OnInit {
 
   public collectInputs() {
     this.store.dispatch(stateActions.inputsActions.updateKeys({...this.buttons}));
+    Object.keys({...this.buttons}).forEach( key => {
+      if ( {...this.buttons}[key]){
+        console.log(key);
+      }
+    });
   }
 
   public testDirections() {
@@ -87,6 +100,10 @@ export class AppComponent implements OnInit {
 
   public detectCollision() {
     this.collision.test();
+  }
+
+  public testAdjust() {
+    this.adjust.adjust();
   }
 
   public moveNow() {

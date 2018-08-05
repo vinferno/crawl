@@ -36,6 +36,9 @@ export class DirectionService {
       if (this.inputs.keys[being.up]) {
         being.t += -being.speed;
       }
+      if (being.id === 0 && (being.t || being.l)) {
+        console.log('l', being.l, 't', being.t)
+      }
     });
   }
 }

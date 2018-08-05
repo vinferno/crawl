@@ -2,4 +2,9 @@
   <div *ngFor="let phase of clockState.phases" [ngClass]="getPhaseClass(phase)">{{phase}}</div>
 </div>
 
+<div>
+  links
+  <br>
+  <a routerLink="/stage-select">stage select</a>
+</div>
 <vf-being *ngFor="let being of beings; let i = index" [id]="i" [being]="being" [phase]="phase"></vf-being>

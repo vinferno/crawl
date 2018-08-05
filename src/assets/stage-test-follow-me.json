@@ -1,0 +1,26 @@
+[
+  {
+    "x": 100,
+    "y": 300,
+    "width": 99,
+    "height": 99,
+    "backgroundColor": "yellow",
+    "up": "e",
+    "down": "d",
+    "right": "f",
+    "left": "s",
+    "speed": 10
+  },
+  {
+    "x": 200,
+    "y": 300,
+    "width": 99,
+    "height": 99,
+    "backgroundColor": "yellow",
+    "up": "e",
+    "down": "d",
+    "right": "f",
+    "left": "s",
+    "speed": 10
+  }
+]

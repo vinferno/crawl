@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {Store} from '@ngrx/store';
 import {stateActions} from '../state/reducers-index';
 
@@ -8,7 +8,7 @@ import {stateActions} from '../state/reducers-index';
   styleUrls: ['./being.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BeingComponent implements OnInit {
+export class BeingComponent implements OnInit, OnDestroy {
 
   @Input()
   public being: any;
@@ -44,6 +44,9 @@ export class BeingComponent implements OnInit {
       this.beings = state.beings;
       this.self = state.beings[this.id];
     });
+  }
+
+  ngOnDestroy() {
   }
 
   public getStyle() {
