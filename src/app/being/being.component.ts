@@ -22,6 +22,7 @@ export class BeingComponent implements OnInit, OnDestroy {
   public beings;
   public self;
 
+  public lastL = 1;
   constructor(
     public store: Store<any>,
   ) {
@@ -64,5 +65,28 @@ export class BeingComponent implements OnInit, OnDestroy {
       position: 'absolute',
       'border-radius': being.borderRadius,
     };
+  }
+
+  public getImageStyle() {
+    const being = this.beings[this.id];
+    if (!being || !being.walking || !being.walking.left) {
+      return {};
+    }
+    if ( being.l ) {
+      this.lastL = being.l < 0 ? -1 : 1;
+    }
+    return {
+      width: being.l ? being.walking.width : being.still.width,
+      height: being.l ? being.walking.height : being.still.height,
+      position: 'absolute',
+      top: this.lastL < 0 ? being.walking.top : being.still.top,
+      left: being.l ? being.walking.left : being.still.left,
+      transform: (being.l < 0) || this.lastL < 0 ? 'scaleX(-1)' : 'scaleX(1)',
+    };
+  }
+
+  public getSrc() {
+    if (!this.self) {return; }
+    return this.self.l ? this.self.walking.src : this.self.still.src;
   }
 }

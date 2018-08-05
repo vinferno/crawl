@@ -1,32 +1,34 @@
-[
-  {
-    "x": 100,
-    "y": 300,
-    "width": 99,
-    "height": 99,
-    "backgroundColor": "yellow",
-    "up": "e",
-    "down": "d",
-    "right": "f",
-    "left": "s",
-    "speed": 10
-  },
-  {
-    "x": 100,
-    "y": 400,
-    "width": 99,
-    "height": 99,
-    "backgroundColor": "green",
-    "speed": 10,
-    "src": "assets/grass.png"
-  },
-  {
-    "x": 205,
-    "y": 300,
-    "width": 99,
-    "height": 99,
-    "backgroundColor": "green",
-    "speed": 10,
-    "src": "assets/grass.png"
-  }
-]
+{
+  "beings": [
+    {
+      "x": 100,
+      "y": 300,
+      "width": 99,
+      "height": 99,
+      "backgroundColor": "yellow",
+      "up": "e",
+      "down": "d",
+      "right": "f",
+      "left": "s",
+      "speed": 10
+    },
+    {
+      "x": 100,
+      "y": 400,
+      "width": 99,
+      "height": 99,
+      "backgroundColor": "green",
+      "speed": 10,
+      "src": "assets/grass.png"
+    },
+    {
+      "x": 205,
+      "y": 300,
+      "width": 99,
+      "height": 99,
+      "backgroundColor": "green",
+      "speed": 10,
+      "src": "assets/grass.png"
+    }
+  ]
+}

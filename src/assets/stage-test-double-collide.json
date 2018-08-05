@@ -1,4 +1,4 @@
-[
+{ "beings": [
   {
     "x": 200,
     "y": 230,
@@ -17,10 +17,10 @@
     "width": 99,
     "height": 99,
     "backgroundColor": "red",
-    "up": "i",
-    "down": "k",
-    "right": "l",
-    "left": "j",
+    "up": "e",
+    "down": "d",
+    "right": "f",
+    "left": "s",
     "speed": 10
   },
   {
@@ -69,3 +69,4 @@
     "src": "assets/grass.png"
   }
 ]
+}

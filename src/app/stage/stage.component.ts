@@ -33,9 +33,7 @@ export class StageComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    console.log('stage');
     const paramSub = this.route.params.subscribe(params => {
-      console.log(params['config']); // (+) converts string 'id' to a number
       this.getStage(params['config']);
     });
 
@@ -68,10 +66,13 @@ export class StageComponent implements OnInit, OnDestroy {
 
 
   public getStage(url) {
-    this.http.get('assets/' + url + '.json').subscribe( res => {
-      console.log('res', res);
-      this.beings = res;
+    this.http.get('assets/' + url + '.json').subscribe( (res: any) => {
+      this.beings = res.beings;
+      if (res.clockSpeed) {
+        this.clock.speed = res.clockSpeed;
+      }
     }, error1 =>  { this.router.navigateByUrl('stage/stage-test-slide-x'); console.log('error routing', error1);});
   }
 
 }
+

@@ -8,7 +8,6 @@ import {MoveService} from './services/move.service';
 import {CollisionService} from './services/collision.service';
 import {AdjustService} from './services/adjust.service';
 
-const clockspeed = 100;
 @Component({
   selector: 'vf-root',
   templateUrl: './app.component.html',
@@ -20,6 +19,10 @@ export class AppComponent implements OnInit {
 
   public state;
 
+  public start;
+
+  public clockSpeed;
+
   constructor(
     public input: InputsService,
     public store: Store<any>,
@@ -30,7 +33,6 @@ export class AppComponent implements OnInit {
     public move: MoveService,
   ) {
     this.store.subscribe(state => this.state = state);
-
   }
 
   @HostListener('document:keydown', ['$event'])
@@ -78,7 +80,7 @@ export class AppComponent implements OnInit {
       }
     });
 
-    this.clock.startClock(clockspeed).subscribe();
+    this.playPause();
   }
 
   public addKeyPress(key) {
@@ -87,11 +89,6 @@ export class AppComponent implements OnInit {
 
   public collectInputs() {
     this.store.dispatch(stateActions.inputsActions.updateKeys({...this.buttons}));
-    Object.keys({...this.buttons}).forEach( key => {
-      if ( {...this.buttons}[key]){
-        console.log(key);
-      }
-    });
   }
 
   public testDirections() {
@@ -108,5 +105,14 @@ export class AppComponent implements OnInit {
 
   public moveNow() {
     this.move.move();
+  }
+
+  public playPause() {
+    if (this.start) {
+      this.start.unsubscribe();
+      this.start = null;
+    } else {
+      this.start = this.clock.startClock().subscribe();
+    }
   }
 }

@@ -1,26 +1,48 @@
-[
-  {
-    "x": 100,
-    "y": 300,
-    "width": 99,
-    "height": 99,
-    "backgroundColor": "yellow",
-    "up": "e",
-    "down": "d",
-    "right": "f",
-    "left": "s",
-    "speed": 10
-  },
-  {
-    "x": 200,
-    "y": 300,
-    "width": 99,
-    "height": 99,
-    "backgroundColor": "yellow",
-    "up": "e",
-    "down": "d",
-    "right": "f",
-    "left": "s",
-    "speed": 10
-  }
-]
+{
+  "clockSpeed": 100,
+  "beings": [
+    {
+      "x": 0,
+      "y": 300,
+      "width": 99,
+      "height": 99,
+      "backgroundColor": "yellow",
+      "up": "e",
+      "down": "d",
+      "right": "f",
+      "left": "s",
+      "speed": 10,
+      "src": "./assets/booty-still.gif",
+      "still": {
+        "left": {
+          "width": "70%",
+          "height": "105%",
+          "top": "-6px",
+          "left": "15px"
+        },
+        "right": {
+          "width": "70%",
+          "height": "105%",
+          "top": "-6px",
+          "left": "15px"
+        },
+        "src": "./assets/booty-still.gif"
+      },
+      "walking": {
+        "right": {
+          "width": "100%",
+          "height": "110%",
+          "top": "-12px",
+          "left": "15px"
+        },
+        "left": {
+          "width": "100%",
+          "height": "110%",
+          "top": "-12px",
+          "left": "15px"
+        },
+        "src": "./assets/booty-walking.gif"
+      }
+    }
+  ]
+}

@@ -71,14 +71,10 @@ export class CollisionService {
             id: being2.id
           };
           being1.angle.push(collision);
-          if (being1.id === 0) {
-            console.log('angle collision detected', collision.id);
-          }
         }
 
         // test left only
         if (!this.collisionFree(myLeft, myOldTop, myRight, myOldBottom, theirLeft, theirTop, theirRight, theirBottom)) {
-          console.log('left only');
           const collision = {
             being2: {...being2},
             distance:
@@ -95,9 +91,6 @@ export class CollisionService {
             id: being2.id
           };
           being1.leftOnly.push(collision);
-          if (being1.id === 0) {
-            console.log('left only collision detected', collision.id);
-          }
         }
 
         // test top only
@@ -118,9 +111,6 @@ export class CollisionService {
             id: being2.id
           };
           being1.topOnly.push(collision);
-          if (being1.id === 0) {
-            console.log('top only collision detected', collision.id);
-          }
         }
         // end of being2
       });
@@ -178,9 +168,5 @@ export class CollisionService {
       left: tl,
       top: tt,
     };
-  }
-
-  public sameSign(a, b) {
-    return ( a ^ b) >= 0;
   }
 }

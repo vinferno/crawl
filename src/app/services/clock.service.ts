@@ -10,15 +10,14 @@ import {stateActions} from '../state/reducers-index';
 export class ClockService {
   public tick;
   public phases = ['collectInputs', 'testDirections', 'detectCollision', 'adjust', 'move'];
-  public phase = 0;
+  public speed = 100;
 
   constructor(public store: Store<any>) {
     this.store.dispatch(stateActions.clockActions.updatePhases(this.phases));
   }
 
-  public startClock(i) {
-    console.log('clock is moving at:', i);
-    return interval(i).pipe(
+  public startClock() {
+    return interval(this.speed ? this.speed : 60).pipe(
       map(res => {
         this.store.dispatch(stateActions.clockActions.updatePhase(this.phases[res % this.phases.length]));
       })
