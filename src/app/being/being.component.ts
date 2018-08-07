@@ -1,6 +1,7 @@
 import {ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {Store} from '@ngrx/store';
 import {stateActions} from '../state/reducers-index';
+import {BeingImageService} from '../services/being-image.service';
 
 @Component({
   selector: 'vf-being',
@@ -23,8 +24,10 @@ export class BeingComponent implements OnInit, OnDestroy {
   public self;
 
   public lastL = 1;
+
   constructor(
     public store: Store<any>,
+    public beingImage: BeingImageService,
   ) {
   }
 
@@ -64,29 +67,30 @@ export class BeingComponent implements OnInit, OnDestroy {
       left: being.x + px,
       position: 'absolute',
       'border-radius': being.borderRadius,
+      'z-index': being.zIndex
     };
   }
 
   public getImageStyle() {
-    const being = this.beings[this.id];
-    if (!being || !being.walking || !being.walking.left) {
-      return {};
+
+    if (!this.self || !this.beingImage || !this.beingImage.imageConfigs || !this.beingImage.imageConfigs[this.self.beingConfig]) {
+      return;
     }
-    if ( being.l ) {
-      this.lastL = being.l < 0 ? -1 : 1;
-    }
-    return {
-      width: being.l ? being.walking.width : being.still.width,
-      height: being.l ? being.walking.height : being.still.height,
-      position: 'absolute',
-      top: this.lastL < 0 ? being.walking.top : being.still.top,
-      left: being.l ? being.walking.left : being.still.left,
-      transform: (being.l < 0) || this.lastL < 0 ? 'scaleX(-1)' : 'scaleX(1)',
-    };
+    const image = this.self.l ?
+      this.self.l < 0 ? this.beingImage.imageConfigs[this.self.beingConfig].movingX.left :
+        this.beingImage.imageConfigs[this.self.beingConfig].movingX.right
+      : this.self.lastL < 0 ? {...this.beingImage.imageConfigs[this.self.beingConfig].still.default, ...{transform: 'scaleX(-1)'}} :
+        this.beingImage.imageConfigs[this.self.beingConfig].still.default;
+    return image;
   }
 
-  public getSrc() {
-    if (!this.self) {return; }
-    return this.self.l ? this.self.walking.src : this.self.still.src;
+  public getImageSrc() {
+    if (!this.self || !this.beingImage || !this.beingImage.imageConfigs || !this.beingImage.imageConfigs[this.self.beingConfig]) {
+      return;
+    }
+    return this.self.l ?
+      this.self.l < 0 ? this.beingImage.imageConfigs[this.self.beingConfig].movingX.left.src :
+        this.beingImage.imageConfigs[this.self.beingConfig].movingX.right.src
+      : this.beingImage.imageConfigs[this.self.beingConfig].still.default.src;
   }
 }

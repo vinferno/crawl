@@ -26,7 +26,7 @@ export class CollisionService {
       being1.topOnly = [];
       this.beings.forEach(being2 => {
         // check if it is itself;
-        if (being1.id === being2.id) {
+        if (being1.id === being2.id || being2.isNotSolid ) {
           return;
         }
         // check if it is not moving;

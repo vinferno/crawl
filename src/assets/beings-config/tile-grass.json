@@ -1,0 +1,35 @@
+{
+  "movingX": {
+    "right": {
+      "width": "100%",
+      "height": "100%",
+      "src": "./assets/tree.gif",
+      "transform": "scaleX(1)"
+    },
+    "left": {
+      "width": "100%",
+      "height": "100%",
+      "src": "./assets/dwarf_right.gif",
+      "transform": "scaleX(-1)"
+    }
+  },
+  "movingY": {
+    "down": {
+      "width": "100%",
+      "height": "110%",
+      "src": "./assets/booty-walking.gif"
+    },
+    "up": {
+      "width": "100%",
+      "height": "110%",
+      "src": "./assets/booty-walking.gif"
+    }
+  },
+  "still": {
+    "default": {
+      "width": "100%",
+      "height": "100%",
+      "src": "./assets/tile-grass.jpg"
+    }
+  }
+}

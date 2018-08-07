@@ -1,0 +1,45 @@
+{
+  "movingX": {
+    "right": {
+      "width": "80%",
+      "height": "100%",
+      "src": "./assets/booty-walking.gif",
+      "transform": "scaleX(1)",
+      "top": "0%",
+      "left": "27%"
+    },
+    "left": {
+      "width": "80%",
+      "height": "100%",
+      "src": "./assets/booty-walking.gif",
+      "transform": "scaleX(-1)",
+      "top": "0%",
+      "left": "-2%"
+    }
+  },
+  "movingY": {
+    "down": {
+      "width": "100%",
+      "height": "110%",
+      "top": "2%",
+      "left": "2%",
+      "src": "./assets/booty-walking.gif"
+    },
+    "up": {
+      "width": "100%",
+      "height": "110%",
+      "top": "2%",
+      "left": "2%",
+      "src": "./assets/booty-walking.gif"
+    }
+  },
+  "still": {
+    "default": {
+      "width": "50%",
+      "height": "100%",
+      "top": "4%",
+      "left": "27%",
+      "src": "./assets/booty-still.gif"
+    }
+  }
+}

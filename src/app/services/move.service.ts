@@ -22,6 +22,8 @@ export class MoveService {
     this.beings.forEach(being => {
       being.x += being.l;
       being.y += being.t;
+      being.lastL = being.l ? being.l : being.lastL;
+      being.lastT = being.t ? being.t : being.lastT;
     });
   }
 }
