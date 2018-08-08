@@ -10,7 +10,7 @@ import {stateActions} from '../state/reducers-index';
 export class ClockService {
   public tick;
   public phases = ['collectInputs', 'testDirections', 'detectCollision', 'adjust', 'move'];
-  public speed = 100;
+  public speed = 20;
 
   constructor(public store: Store<any>) {
     this.store.dispatch(stateActions.clockActions.updatePhases(this.phases));

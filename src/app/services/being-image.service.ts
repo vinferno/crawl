@@ -17,6 +17,7 @@ export class BeingImageService {
     this.getBeingConfig('dragon');
     this.getBeingConfig('tile-grass');
     this.getBeingConfig('dove');
+    this.getBeingConfig('cow');
   }
 
   public getBeingConfig(url) {

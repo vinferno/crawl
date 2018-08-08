@@ -72,9 +72,9 @@
     },
     {
       "x": 150,
-      "y": 300,
-      "width": 200,
-      "height": 200,
+      "y": 200,
+      "width": 300,
+      "height": 300,
       "speed": 10,
       "lastL": 0,
       "beingConfig": "dragon",
@@ -89,6 +89,17 @@
       "speed": 10,
       "lastL": 0,
       "beingConfig": "dove",
+      "isNotSolid": true,
+      "zIndex": "1"
+    },
+    {
+      "x": 600,
+      "y": 500,
+      "width": 200,
+      "height": 200,
+      "speed": 10,
+      "lastL": 0,
+      "beingConfig": "cow",
       "isNotSolid": true,
       "zIndex": "1"
     },

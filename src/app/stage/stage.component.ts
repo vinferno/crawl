@@ -17,6 +17,7 @@ export class StageComponent implements OnInit, OnDestroy {
 
   @HostBinding('style.background-color') public bgc = 'lime';
   public beings;
+  public beingsSave;
   public phase;
   public clockState;
   public subscriptions = [];
@@ -39,7 +40,7 @@ export class StageComponent implements OnInit, OnDestroy {
 
     this.store.select('beingsState').subscribe( beings => {
       if (beings) {
-        this.beings = beings.beings;
+        this.beingsSave = beings.beings;
       }
     });
     this.subscriptions.push(paramSub);
@@ -73,7 +74,7 @@ export class StageComponent implements OnInit, OnDestroy {
   public getStage(url) {
     this.http.get('assets/stages/' + url + '.json').subscribe((res: any) => {
       this.beings = res.beings;
-      if (res.clockSpeed) {
+      if (res.clockSpeed && !res) {
         this.clock.speed = res.clockSpeed;
       }
     }, error1 => {
@@ -83,7 +84,7 @@ export class StageComponent implements OnInit, OnDestroy {
   }
 
   public createStage() {
-    const beings = [...this.beings];
+    const beings = [...this.beingsSave];
     this.http.post('http://127.0.0.1:3000/create-stage', {beings, name: 'test'}).subscribe(res => {
       console.log('res', res);
     });
