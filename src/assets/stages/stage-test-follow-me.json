@@ -1,5 +1,5 @@
 {
-  "clockSpeed": 100,
+  "clockSpeed": 30,
   "beings": [
     {
       "x": 0,
@@ -104,6 +104,17 @@
       "zIndex": "-1"
     },
     {
+      "x": 1000,
+      "y": 0,
+      "width": 1000,
+      "height": 400,
+      "speed": 10,
+      "lastL": 0,
+      "beingConfig": "grassback",
+      "isNotSolid": true,
+      "zIndex": "-1"
+    },
+    {
       "x": 0,
       "y": 400,
       "width": 200,
@@ -139,6 +150,72 @@
     {
       "x": 600,
       "y": 400,
+      "width": 200,
+      "height": 200,
+      "speed": 10,
+      "lastL": 0,
+      "beingConfig": "tile-grass",
+      "isNotSolid": true,
+      "zIndex": "-1"
+    },
+    {
+      "x": 800,
+      "y": 400,
+      "width": 200,
+      "height": 200,
+      "speed": 10,
+      "lastL": 0,
+      "beingConfig": "tile-grass",
+      "isNotSolid": true,
+      "zIndex": "-1"
+    },
+    {
+      "x": 0,
+      "y": 500,
+      "width": 200,
+      "height": 200,
+      "speed": 10,
+      "lastL": 0,
+      "beingConfig": "tile-grass",
+      "isNotSolid": true,
+      "zIndex": "-1"
+    },
+    {
+      "x": 200,
+      "y": 500,
+      "width": 200,
+      "height": 200,
+      "speed": 10,
+      "lastL": 0,
+      "beingConfig": "tile-grass",
+      "isNotSolid": true,
+      "zIndex": "-1"
+    },
+    {
+      "x": 400,
+      "y": 500,
+      "width": 200,
+      "height": 200,
+      "speed": 10,
+      "lastL": 0,
+      "beingConfig": "tile-grass",
+      "isNotSolid": true,
+      "zIndex": "-1"
+    },
+    {
+      "x": 600,
+      "y": 500,
+      "width": 200,
+      "height": 200,
+      "speed": 10,
+      "lastL": 0,
+      "beingConfig": "tile-grass",
+      "isNotSolid": true,
+      "zIndex": "-1"
+    },
+    {
+      "x": 800,
+      "y": 500,
       "width": 200,
       "height": 200,
       "speed": 10,
