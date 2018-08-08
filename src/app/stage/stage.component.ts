@@ -37,6 +37,11 @@ export class StageComponent implements OnInit, OnDestroy {
       this.getStage(params['config']);
     });
 
+    this.store.select('beingsState').subscribe( beings => {
+      if (beings) {
+        this.beings = beings.beings;
+      }
+    });
     this.subscriptions.push(paramSub);
 
 
@@ -57,7 +62,7 @@ export class StageComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.store.dispatch(stateActions.beingsActions.reset(null));
-    this.subscriptions.forEach( sub => sub.unsubscribe());
+    this.subscriptions.forEach(sub => sub.unsubscribe());
   }
 
   public getPhaseClass(phase) {
@@ -66,12 +71,22 @@ export class StageComponent implements OnInit, OnDestroy {
 
 
   public getStage(url) {
-    this.http.get('assets/' + url + '.json').subscribe( (res: any) => {
+    this.http.get('assets/stages/' + url + '.json').subscribe((res: any) => {
       this.beings = res.beings;
       if (res.clockSpeed) {
         this.clock.speed = res.clockSpeed;
       }
-    }, error1 =>  { this.router.navigateByUrl('stage/stage-test-slide-x'); console.log('error routing', error1);});
+    }, error1 => {
+      this.router.navigateByUrl('stage/stage-test-slide-x');
+      console.log('error routing', error1);
+    });
+  }
+
+  public createStage() {
+    const beings = [...this.beings];
+    this.http.post('http://127.0.0.1:3000/create-stage', {beings, name: 'test'}).subscribe(res => {
+      console.log('res', res);
+    });
   }
 
 }

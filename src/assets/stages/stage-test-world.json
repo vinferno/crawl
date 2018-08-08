@@ -1,0 +1,206 @@
+{
+  "clockSpeed": 30,
+  "beings": [
+    {
+      "x": 0,
+      "y": 380,
+      "width": 200,
+      "height": 200,
+      "up": "e",
+      "down": "d",
+      "right": "f",
+      "left": "s",
+      "speed": 10,
+      "lastL": 0,
+      "beingConfig": "dwarf",
+      "isNotSolid": true
+    },
+    {
+      "x": 400,
+      "y": 380,
+      "width": 200,
+      "height": 200,
+      "up": "i",
+      "down": "k",
+      "right": "l",
+      "left": "j",
+      "speed": 10,
+      "lastL": 0,
+      "beingConfig": "booty",
+      "isNotSolid": true
+    },
+    {
+      "x": 200,
+      "y": 400,
+      "width": 200,
+      "height": 200,
+      "speed": 10,
+      "lastL": 0,
+      "beingConfig": "tree",
+      "isNotSolid": true
+    },
+    {
+      "x": 400,
+      "y": 300,
+      "width": 200,
+      "height": 200,
+      "speed": 10,
+      "lastL": 0,
+      "beingConfig": "tree",
+      "isNotSolid": true,
+      "zIndex": "3"
+    },
+    {
+      "x": 0,
+      "y": 430,
+      "width": 200,
+      "height": 200,
+      "speed": 10,
+      "lastL": 0,
+      "beingConfig": "tallgrass",
+      "isNotSolid": true
+    },
+    {
+      "x": 450,
+      "y": 420,
+      "width": 200,
+      "height": 200,
+      "speed": 10,
+      "lastL": 0,
+      "beingConfig": "tallgrass",
+      "isNotSolid": true
+    },
+    {
+      "x": 150,
+      "y": 300,
+      "width": 200,
+      "height": 200,
+      "speed": 10,
+      "lastL": 0,
+      "beingConfig": "dragon",
+      "isNotSolid": true,
+      "zIndex": "1"
+    },
+    {
+      "x": 600,
+      "y": 200,
+      "width": 80,
+      "height": 80,
+      "speed": 10,
+      "lastL": 0,
+      "beingConfig": "dove",
+      "isNotSolid": true,
+      "zIndex": "1"
+    },
+    {
+      "x": 0,
+      "y": 400,
+      "width": 200,
+      "height": 200,
+      "speed": 10,
+      "lastL": 0,
+      "beingConfig": "tile-grass",
+      "isNotSolid": true,
+      "zIndex": "-1"
+    },
+    {
+      "x": 200,
+      "y": 400,
+      "width": 200,
+      "height": 200,
+      "speed": 10,
+      "lastL": 0,
+      "beingConfig": "tile-grass",
+      "isNotSolid": true,
+      "zIndex": "-1"
+    },
+    {
+      "x": 400,
+      "y": 400,
+      "width": 200,
+      "height": 200,
+      "speed": 10,
+      "lastL": 0,
+      "beingConfig": "tile-grass",
+      "isNotSolid": true,
+      "zIndex": "-1"
+    },
+    {
+      "x": 600,
+      "y": 400,
+      "width": 200,
+      "height": 200,
+      "speed": 10,
+      "lastL": 0,
+      "beingConfig": "tile-grass",
+      "isNotSolid": true,
+      "zIndex": "-1"
+    },
+    {
+      "x": 800,
+      "y": 400,
+      "width": 200,
+      "height": 200,
+      "speed": 10,
+      "lastL": 0,
+      "beingConfig": "tile-grass",
+      "isNotSolid": true,
+      "zIndex": "-1"
+    },
+    {
+      "x": 0,
+      "y": 500,
+      "width": 200,
+      "height": 200,
+      "speed": 10,
+      "lastL": 0,
+      "beingConfig": "tile-grass",
+      "isNotSolid": true,
+      "zIndex": "-1"
+    },
+    {
+      "x": 200,
+      "y": 500,
+      "width": 200,
+      "height": 200,
+      "speed": 10,
+      "lastL": 0,
+      "beingConfig": "tile-grass",
+      "isNotSolid": true,
+      "zIndex": "-1"
+    },
+    {
+      "x": 400,
+      "y": 500,
+      "width": 200,
+      "height": 200,
+      "speed": 10,
+      "lastL": 0,
+      "beingConfig": "tile-grass",
+      "isNotSolid": true,
+      "zIndex": "-1"
+    },
+    {
+      "x": 600,
+      "y": 500,
+      "width": 200,
+      "height": 200,
+      "speed": 10,
+      "lastL": 0,
+      "beingConfig": "tile-grass",
+      "isNotSolid": true,
+      "zIndex": "-1"
+    },
+    {
+      "x": 800,
+      "y": 500,
+      "width": 200,
+      "height": 200,
+      "speed": 10,
+      "lastL": 0,
+      "beingConfig": "tile-grass",
+      "isNotSolid": true,
+      "zIndex": "-1"
+    }
+  ]
+}

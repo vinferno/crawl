@@ -6,5 +6,7 @@
   links
   <br>
   <a routerLink="/stage-select">stage select</a>
+  <br>
+  <button (click)="createStage()">Create Stage</button>
 </div>
 <vf-being *ngFor="let being of beings; let i = index" [id]="i" [being]="being" [phase]="phase"></vf-being>

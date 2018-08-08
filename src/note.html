@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<script>
+  `     DRIVING,
+
+  MEDPROCADVISED,
+
+    HEIGHTWEIGHT,
+
+    PHYSICIANS,
+
+    HEALTHHISTORY,
+
+    EXISTINGCOVERAGE,
+
+    QUALIFYINGEVENT,
+
+    COMPREHENSIVEHEALTHBENF,
+
+    COMPREHENSIVEHEALTHBENFRESPONSE,
+
+    TOBACCOUSE,
+
+    SPOUSETOBACCOUSE,
+
+    DEPENDENTTOBACCO,
+
+    CHGRANDCHFTSTUDENT,
+
+    CHGRANDCHACTIVEWK,
+
+    REPLACEMENT,
+
+    REPLACEMENTRESPONSE,
+
+    AGENTREPLACEMENT,
+
+    EXISTINGINSURANCE,
+
+    EXISTINGINSURANCERESPONSE,
+
+    AGENTEXISTING,
+
+    ILLUSTRATIONCERT1,
+
+    AGENTNAIC,
+    `.split(", ").forEach( item => { console.log('public bool ' + item.trim() + ' { get; set; }' ); });
+</script>
+
+</body>
+</html>
